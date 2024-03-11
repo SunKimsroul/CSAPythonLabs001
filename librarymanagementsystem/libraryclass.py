@@ -1,3 +1,5 @@
+from bookClass import Book
+
 class Library:
     def __init__(self):
         self.books = []
@@ -20,3 +22,26 @@ class Library:
                 print(book.check_out())
                 return
         print(f"{title} is not available for checkout.")
+
+    def return_book(self, title):
+        for book in self.books:
+            if book.title == title and book.is_checked_out:
+                print(book.return_book())
+                return
+        print(f"{title} was not checked out.")
+
+    def search_books_by_title(self, title):
+        found_books = [book for book in self.books if title.lower() in book.title.lower()]
+        if found_books:
+            for book in found_books:
+                print(f"{book.title} by {book.author}")
+        else:
+            print("No books found with that title.")
+
+    def search_books_by_author(self, author):
+        found_books = [book for book in self.books if author.lower() in book.author.lower()]
+        if found_books:
+            for book in found_books:
+                print(f"{book.title} by {book.author}")
+        else:
+            print("No books found by that author.")
